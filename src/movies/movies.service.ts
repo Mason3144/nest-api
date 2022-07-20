@@ -10,6 +10,15 @@ export class MoviesService {
   getAll(): Movie[] {
     return this.movies;
   }
+  searchYear(searchingYear: number): Movie[] {
+    return this.movies.filter((movie) => movie.year === searchingYear);
+  }
+  searchTitle(searchingTitle: string): Movie[] {
+    return this.movies.filter((movie) =>
+      movie.title.toLowerCase().includes(searchingTitle.toLowerCase()),
+    );
+  }
+
   getOne(id: number): Movie {
     const movie = this.movies.find((movie) => movie.id === id);
     if (!movie) {
