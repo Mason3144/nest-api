@@ -24,6 +24,32 @@ describe('MoviesService', () => {
       expect(result).toBeInstanceOf(Array);
     });
   });
+  describe('search', () => {
+    it('should return an array', () => {
+      service.create({
+        title: 'Test Movie',
+        year: 2000,
+        genres: ['test'],
+      });
+      const search = service.searchYear(2000);
+      const wrongSearch = service.searchYear(1999);
+      expect(search).toBeInstanceOf(Array);
+      expect(search.length).toEqual(1);
+      expect(wrongSearch.length).toEqual(0);
+    });
+    it('should return an array', () => {
+      service.create({
+        title: 'Test Movie',
+        year: 2000,
+        genres: ['test'],
+      });
+      const search = service.searchTitle('test');
+      const wrongSearch = service.searchTitle('Wrong');
+      expect(search).toBeInstanceOf(Array);
+      expect(search.length).toEqual(1);
+      expect(wrongSearch.length).toEqual(0);
+    });
+  });
 
   describe('getOne', () => {
     it('should return a movie', () => {
